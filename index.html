@@ -65,6 +65,53 @@
   <td>$1000</td>
 </tr>
 
+<hr>
+
+<h3>SQL (programming language)
+</h3>
+<blockquote cite = https://en.wikipedia.org/wiki/SQL> Defination source
+  Structured Query Language)[5] is a domain-specific language used in programming and designed for managing data 
+  held in a relational database management system (RDBMS), or for stream processing in a relational data stream 
+  management system (RDSMS). It is particularly useful in handling structured data, i.e. data incorporating relations
+  among entities and variables.SQL offers two main advantages over older read–write APIs such as ISAM or VSAM.
+   Firstly, it introduced the concept of accessing many records with one single command. Secondly, it eliminates
+    the need to specify how to reach a record, e.g. with or without an index.
+
+
+</blockquote>
+<pre>
+  -- available online in file 'examp11' 
+DECLARE
+   numerator   NUMBER;
+   denominator NUMBER;
+   the_ratio   NUMBER;
+   lower_limit CONSTANT NUMBER := 0.72;
+   samp_num    CONSTANT NUMBER := 132;
+BEGIN
+   SELECT x, y INTO numerator, denominator FROM result_table
+      WHERE sample_id = samp_num;
+   the_ratio := numerator/denominator;
+   IF the_ratio > lower_limit THEN
+      INSERT INTO ratio VALUES (samp_num, the_ratio);
+   ELSE
+      INSERT INTO ratio VALUES (samp_num, -1);
+   END IF;
+   COMMIT;
+EXCEPTION
+   WHEN ZERO_DIVIDE THEN
+      INSERT INTO ratio VALUES (samp_num, 0);
+      COMMIT;
+   WHEN OTHERS THEN
+      ROLLBACK;
+END;
+
+</pre>
+<a href = https://docs.oracle.com/cd/A97630_01/appdev.920/a96624/13_elems4.htm#32959>Code defination link</a>
+
+
+
+
+
 </table>
    
   
